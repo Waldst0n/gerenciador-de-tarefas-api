@@ -13,4 +13,4 @@ const TaskSchema = Schema({
 
 const TaskModel = model('Task', TaskSchema);
 
-MediaSourceHandle.exports = TaskModel;
+module.exports = TaskModel;
