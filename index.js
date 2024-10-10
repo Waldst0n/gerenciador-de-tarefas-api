@@ -46,6 +46,32 @@ app.post('/tasks', async (req, res) => {
     }
 });
 
+app.patch('/tasks/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const taskData = req.body;
+
+        const taskToUpdate = await TaskModel.findById(id);
+
+        const allowedUpdate = ['isCompleted'];
+        const requestedUpdate = Object.keys(taskData);
+
+        for (update of requestedUpdate) {
+            if (allowedUpdate.includes(update)) {
+                taskToUpdate[update] = taskData[update];
+            } else {
+                return res.status(500).send('There are non-editable fields');
+            }
+        }
+
+        await taskToUpdate.save();
+
+        return res.status(200).send(taskToUpdate);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 app.delete('/tasks/:id', async (req, res) => {
     const deletedTask = await TaskModel.findByIdAndDelete(req.params.id);
 
