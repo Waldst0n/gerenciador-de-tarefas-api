@@ -21,13 +21,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-    const deletedTask = await TaskModel.findByIdAndDelete(req.params.id);
-
-    const taskToDelete = await TaskModel.findById(req.params.id);
-    if (!taskToDelete) {
-        return res.status(404).send('Task not Found!');
-    }
-    res.status(200).send(deletedTask);
+    return new TaskController(req, res).deleteTask();
 });
 
 module.exports = router;
