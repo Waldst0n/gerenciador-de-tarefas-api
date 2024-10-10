@@ -29,6 +29,18 @@ class TaskController {
             this.res.send(404).send(error.message);
         }
     }
+
+    async createTask() {
+        try {
+            const newTask = new TaskModel(this.req.body);
+
+            await newTask.save();
+
+            this.res.status(201).send(newTask);
+        } catch (error) {
+            this.res.status(500).send(error.message);
+        }
+    }
 }
 
 module.exports = TaskController;
