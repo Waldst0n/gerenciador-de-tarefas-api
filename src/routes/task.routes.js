@@ -9,18 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    try {
-        const id = req.params.id;
-        const task = await TaskModel.findById(id);
-
-        if (!task) {
-            res.status(404).send('Task not found');
-        }
-
-        return res.status(200).send(task);
-    } catch (error) {
-        res.send(404).send(error.message);
-    }
+    return new TaskController(req, res).getTaskById();
 });
 
 router.post('/', async (req, res) => {
