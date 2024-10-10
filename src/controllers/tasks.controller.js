@@ -41,6 +41,34 @@ class TaskController {
             this.res.status(500).send(error.message);
         }
     }
+
+    async updateTask() {
+        try {
+            const id = this.req.params.id;
+            const taskData = this.req.body;
+
+            const taskToUpdate = await TaskModel.findById(id);
+
+            const allowedUpdate = ['isCompleted'];
+            const requestedUpdate = Object.keys(taskData);
+
+            for (const update of requestedUpdate) {
+                if (allowedUpdate.includes(update)) {
+                    taskToUpdate[update] = taskData[update];
+                } else {
+                    return this.res
+                        .status(500)
+                        .send('There are non-editable fields');
+                }
+            }
+
+            await taskToUpdate.save();
+
+            return this.res.status(200).send(taskToUpdate);
+        } catch (error) {
+            this.res.status(500).send(error.message);
+        }
+    }
 }
 
 module.exports = TaskController;
