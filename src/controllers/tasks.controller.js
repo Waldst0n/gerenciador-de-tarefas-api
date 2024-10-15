@@ -93,7 +93,7 @@ class TaskController {
 
             const deletedTask = await TaskModel.findByIdAndDelete(taskId);
 
-            this.res.status(300).send(deletedTask);
+            this.res.status(200).send(deletedTask);
         } catch (error) {
             if (error instanceof mongoose.Error.CastError) {
                 return objectIdError(this.res);
