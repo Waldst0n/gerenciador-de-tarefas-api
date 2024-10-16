@@ -16,9 +16,6 @@ connectToDatabase();
 
 app.use('/tasks', TaskRouter);
 
-app.listen({
-    host: '0.0.0.0',
-    port: process.env.PORT ? Number(process.env.PORT) : 8000,
-}).then(() => {
-    console.log('Http Server Running');
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`); // Mensagem de confirmação
 });
