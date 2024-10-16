@@ -7,6 +7,9 @@ const TaskRouter = require('./src/routes/task.routes');
 
 dotenv.config();
 const app = express();
+
+const PORT = 8000;
+
 app.use(cors());
 app.use(express.json());
 
@@ -14,6 +17,6 @@ connectToDatabase();
 
 app.use('/tasks', TaskRouter);
 
-app.listen(8000, () => {
+app.listen(PORT, () => {
     console.log('Servidor Online');
 });
