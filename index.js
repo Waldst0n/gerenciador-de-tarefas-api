@@ -7,8 +7,8 @@ const TaskRouter = require('./src/routes/task.routes');
 
 dotenv.config();
 const app = express();
-
 const port = process.env.PORT || 8000;
+
 app.use(cors());
 app.use(express.json());
 
@@ -17,5 +17,5 @@ connectToDatabase();
 app.use('/tasks', TaskRouter);
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${PORT}`); // Mensagem de confirmação
+    console.log(`Server is running on port ${port}`); // Mensagem de confirmação
 });
