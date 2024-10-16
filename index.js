@@ -17,5 +17,5 @@ connectToDatabase();
 app.use('/tasks', TaskRouter);
 
 app.listen(PORT, () => {
-    console.log('Servidor Online');
+    console.log(`Server is running on port ${PORT}`); // Mensagem de confirmação
 });
