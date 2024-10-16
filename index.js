@@ -14,6 +14,6 @@ connectToDatabase();
 
 app.use('/tasks', TaskRouter);
 
-// app.listen(8000, () => {
-//     console.log('Servidor Online');
-// });
+app.listen(8000, () => {
+    console.log('Servidor Online');
+});
